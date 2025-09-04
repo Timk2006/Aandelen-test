@@ -43,6 +43,16 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+  protected static function booted()
+{
+    static::created(function ($user) {
+        $user->wallet()->create(['balance' => 1000.00]);        
+    });
+}
+   public function wallet()
+{
+     return $this->hasOne(Wallet::class);
+}
     /**
      * The accessors to append to the model's array form.
      *

@@ -40,6 +40,10 @@ const props = defineProps({
         </tr>
       </tbody>
     </table>
+
+      <div class="container mt-4">
+            <a href="/Aandelen" class="btn btn-primary mb-3">Ga naar je account om aandelen te kopen</a>
+        </div>
   </div>
 </template>
 
