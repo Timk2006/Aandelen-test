@@ -3,46 +3,51 @@ import { defineProps } from 'vue';
 import NavBar from '../Components/NavBar.vue';
 
 const props = defineProps({
-  aandelen: Array
+  etfs: Array
 });
 </script>
 
 <template>
   <NavBar />
   <div class="container mt-4 p-4">
-    <h1 class="mb-4">Aandelen die er bescikbaar zijn</h1>
+    <h1 class="mb-4">Etfs die er bescikbaar zijn</h1>
     <table class="table table-striped p-4">
       <thead>
         <tr>
+    <th>Etf</th>
+    <th>Prijs</th>
+    <th>Omschrijving</th>
+  </tr>
+        <tr>
           <th>
             <a :href="`?sort=naam&direction=${$page.props.sort === 'naam' && $page.props.direction === 'asc' ? 'desc' : 'asc'}`">
-              Aandeel
+             
               <span v-if="$page.props.sort === 'naam'">{{$page.props.direction === 'asc' ? '▲' : '▼'}}</span>
             </a>
           </th>
           <th>
             <a :href="`?sort=prijs&direction=${$page.props.sort === 'prijs' && $page.props.direction === 'asc' ? 'desc' : 'asc'}`">
-              Prijs
+             
               <span v-if="$page.props.sort === 'prijs'">{{$page.props.direction === 'asc' ? '▲' : '▼'}}</span>
             </a>
           </th>
-          <th>Omschrijving</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="aandeel in aandelen" :key="aandeel.id">
-        <img v-if="aandeel.foto_url" :src="aandeel.foto_url" alt="Foto van aandeel" style="max-width: 80px; max-height: 80px;">
+<tbody>
+  <tr v-for="etf in etfs" :key="etf.id">
+    <td>
+      <img v-if="etf.foto_url" :src="etf.foto_url" alt="Foto van een etf" style="max-width: 80px; max-height: 80px;">
+    </td>
+    <td>{{ etf.naam }}</td>
+    <td>{{ etf.prijs }}</td>
+    <td>{{ etf.omschrijving }}</td>
+  </tr>
+</tbody>
 
-          <td>{{ aandeel.naam }}</td>
-          <td>{{ aandeel.prijs }}</td>
-          <td>{{ aandeel.omschrijving}}</td>
-          <td>{{ aandeel.foto_url}}</td>
-        </tr>
-      </tbody>
     </table>
 
       <div class="container mt-4">
-            <a href="/wallet" class="btn btn-primary mb-3">Ga naar je account om aandelen te kopen</a>
+            <a href="/wallet" class="btn btn-primary mb-3">Ga naar je account om efts te kopen met je saldo</a>
         </div>
   </div>
 </template>

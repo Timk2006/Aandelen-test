@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 \App\Models\Aandeel::factory()->count(10)->create();
+\App\Models\Etf::factory()->count(10)->create();
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AandelenControler;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AandelenController;
+use App\Http\Controllers\EtfController;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Wallet;
@@ -22,6 +23,14 @@ Route::get('/', function () {
 Route::get('/Contact', function () {
     return Inertia::render('Contact');
 })->name('Contact');
+
+
+//Route::get('/etf', function () {
+//    return Inertia::render('etf');
+//})->name('etf');
+
+Route::get('/etf', [EtfController::class, 'index'])->name('etf');
+
 
 Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
 

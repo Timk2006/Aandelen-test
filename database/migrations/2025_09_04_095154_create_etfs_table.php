@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('naam');
-            $table->prijscimal('prijs', 8, 2);
+            $table->decimal('prijs', 8, 2);
             $table->text('omschrijving')->nullable();
             $table->string('foto_url')->nullable();
         });
