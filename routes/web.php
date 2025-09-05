@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AandelenControler;
+use App\Http\Controllers\AandelenKoopControler;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AandelenController;
+use App\Http\Controllers\AandelenKoopController;
 use App\Http\Controllers\EtfController;
 use Inertia\Inertia;
 use App\Models\User;
@@ -25,14 +27,17 @@ Route::get('/Contact', function () {
 })->name('Contact');
 
 
-//Route::get('/etf', function () {
-//    return Inertia::render('etf');
-//})->name('etf');
+;
 
 Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
 
 Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
+
+Route::get('/Kopen', [AandelenKoopController::class, 'index'])->name('Kopen');
+
+
+
 
 Route::middleware([
     'auth:sanctum',

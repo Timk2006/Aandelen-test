@@ -53,6 +53,11 @@ class User extends Authenticatable
 {
      return $this->hasOne(Wallet::class);
 }
+
+public function aandelen()
+{
+    return $this->belongsToMany(Aandeel::class)->withPivot('aantal');
+}
     /**
      * The accessors to append to the model's array form.
      *
