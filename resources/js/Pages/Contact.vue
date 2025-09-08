@@ -56,8 +56,8 @@
 import { ref } from "vue";
 
 const form = ref({
-  name: "",
-  email: "",
+  name: "tim",
+  email: "koopstim430@gmail.com",
   message: "",
 });
 

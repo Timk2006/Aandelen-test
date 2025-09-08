@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AandelenController;
 use App\Http\Controllers\AandelenKoopController;
 use App\Http\Controllers\EtfController;
+use App\Http\Controllers\WalletController;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Wallet;
@@ -27,12 +28,17 @@ Route::get('/Contact', function () {
 })->name('Contact');
 
 
-;
-
 Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
 
 Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
+
+
+
+Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
+
+
+
 
 Route::get('/Kopen', [AandelenKoopController::class, 'index'])->name('Kopen');
 
@@ -48,34 +54,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-});
-
-Route::get('/wallet', function () {
-    $user = auth()->user();
-
-    if (!$user) {
-        return redirect('/login');
-    }
-
-    if (!$user->wallet) {
-        $user->wallet()->create(['balance' => 1000.00]);
-    }
-
-    return view('wallet', ['balance' => $user->wallet->balance]);
-});
-
-Route::post('/wallet', function (Request $request) {
-    $user = auth()->user();
-
-    if (!$user) {
-        return redirect('/login');
-    }
-
-    if (!$user->wallet) {
-        $user->wallet()->create(['balance' => 1000.00]);
-    }
-
-    $user->wallet->increment('balance', $request->amount);
-
-return redirect('/wallet');
 });
