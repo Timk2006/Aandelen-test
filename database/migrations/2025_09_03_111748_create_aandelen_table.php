@@ -6,26 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('aandelen', function (Blueprint $table) {
+        Schema::create('transacties', function (Blueprint $table) {
             $table->id();
-            $table->string('naam');
-            $table->decimal('prijs', 8, 2);
-            $table->text('omschrijving')->nullable();
-            $table->string('foto_url')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('aandeel_id')->constrained('aandelen')->onDelete('cascade');
+            $table->integer('aantal');
+            $table->decimal('prijs_per_stuk', 10, 2);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('aandelen');
+        Schema::dropIfExists('transacties');
     }
 };

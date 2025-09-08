@@ -11,11 +11,13 @@ return new class extends Migration
      */
 public function up()
 {
-    Schema::create('usertest', function (Blueprint $table) {
+    Schema::create('transacties', function (Blueprint $table) {
         $table->id();
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('aandeel_id')->constrained()->onDelete('cascade');
+        $table->foreignId('aandeel_id')->constrained('aandelen')->onDelete('');
         $table->timestamps();
+        $table->integer('aantal');
+        $table->decimal('prijs_per_stuk', 10, 2);
     });
 }
     /**
@@ -23,6 +25,6 @@ public function up()
      */
     public function down(): void
     {
-        Schema::dropIfExists('usertest');
+        Schema::dropIfExists('transacties');
     }
 };
