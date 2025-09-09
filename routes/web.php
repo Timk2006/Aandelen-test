@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\AandelenControler;
-use App\Http\Controllers\AandelenKoopControler;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\AandelenController;
 use App\Http\Controllers\AandelenKoopController;
 use App\Http\Controllers\EtfController;
@@ -30,20 +29,11 @@ Route::get('/Contact', function () {
 
 Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
-
 Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
-
-
 
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
-
-
-
 Route::get('/Kopen', [AandelenKoopController::class, 'index'])->name('Kopen');
-
-
-
 
 Route::middleware([
     'auth:sanctum',

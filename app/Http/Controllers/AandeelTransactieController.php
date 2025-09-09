@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class AandeelTransactieController extends Controller
@@ -14,6 +14,8 @@ class AandeelTransactieController extends Controller
       }
       
 $user->wallet->balance -= $totaalprijs;
+$totaalprijs = $request->aantal * $request->prijs_per_stuk;
+
       $user->wallet->save();
       Transaction::create([
           'user_id' => $user->id,
