@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
-import NavBar from '../Components/NavBar.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';  
 
 const props = defineProps({
   aandelen: Array
@@ -8,28 +8,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <nav class="navbar navbar-dark bg-primary flex-row z-index-3">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-      <ul class="navbar-nav me-auto mb-4 mb-lg-4 d-flex flex-row">
-        <li class="nav-item">
-          <a class="nav-link me-4" href="/">Home</a>
-        </li>
-        <li class="nav-item me-4">
-          <a class="nav-link" href="/Aandelen">Aandelen</a>
-        </li>
-        <li class="nav-item me-4">
-          <a class="nav-link" href="/Contact">Contact</a>
-        </li>
-        <li class="nav-item me-4">
-          <a class="nav-link opacity-100" href="/etf">Etf</a>
-        </li>
-        <li class="nav-item me-4 opacity-100">
-          <a class="nav-link" href="/wallet">Wallet</a>
-        </li>
-      <a class="navbar-brand me-4 opacity-100" href="/">Mijn porffolio</a>
-      </ul>
-    </div>
-  </nav>
+    <NavBar />
+    <AppLayout title="Aandelen">
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-900 leading-tight">
+                Aandelen
+            </h2>
+        </template>
 
   <div class="container mt-4 p-4">
     <h1 class="mb-4">Aandelen die er bescikbaar zijn</h1>
@@ -67,10 +52,6 @@ const props = defineProps({
             <a href="/wallet" class="btn btn-primary mb-3">Ga naar je account om aandelen te kopen</a>
         </div>
   </div>
-</template>
 
-<style scoped>
-.container {
-  max-width: 950px;
-}
-</style>
+</AppLayout>
+</template>

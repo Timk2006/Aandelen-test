@@ -23,18 +23,18 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/Contact', function () {
+Route::get('/contact', function () {
     return Inertia::render('Contact');
-})->name('Contact');
+})->name('contact');
 
 
 Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
-Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
+Route::get('/aandelen', [AandelenController::class, 'index'])->name('aandelen');
 
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
-Route::get('/Kopen', [AandelenKoopController::class, 'index'])->name('Kopen');
+Route::get('/kopen', [AandelenKoopController::class, 'index'])->name('kopen');
 
 Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
 

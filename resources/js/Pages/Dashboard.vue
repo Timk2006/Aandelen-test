@@ -20,7 +20,7 @@ import Welcome from '@/Components/Welcome.vue';
             </div>
 
             <div class="container mt-4">
-            <a href="/Aandelen" class="btn btn-primary mb-3">Ga naar Aandelen</a>
+           <button class="transition ease-in-out duration-700 ...">Hover me</button>
         </div>
         </div>
     </AppLayout>

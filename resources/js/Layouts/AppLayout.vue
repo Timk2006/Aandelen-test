@@ -1,5 +1,5 @@
 <script setup>
-import NavBar from '@/Components/NavBar.vue';
+// import NavBar from '@/Components/NavBar.vue';
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
@@ -8,6 +8,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import Aandelen from '@/Pages/Aandelen.vue';
 
 defineProps({
     title: String,
@@ -52,6 +53,18 @@ const logout = () => {
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
+                                </NavLink>
+                                <NavLink :href="route('aandelen')" :active="route(aandelen).current('aandelen')">
+                                    Aandelen
+                                </NavLink>
+                                <NavLink :href="route('etf')" :active="route(etf).current('etf')">
+                                    Etf
+                                </NavLink>
+                                <NavLink :href="route('wallet')" :active="route(wallet).current('wallet')">
+                                    Wallet
+                                </NavLink>
+                                  <NavLink :href="route('contact')" :active="route(contact).current('contact')">
+                                    Contact
                                 </NavLink>
                             </div>
                         </div>
@@ -196,6 +209,18 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('aandelen')" :active="route(aandelen).current('aandelen')">
+                                   Aandelen
+                             </ResponsiveNavLink>
+                                 <ResponsiveNavLink :href="route('etf')" :active="route(etf).current('etf')">
+                                   Etf
+                             </ResponsiveNavLink>
+                                 <ResponsiveNavLink :href="route('wallet')" :active="route(wallet).current('wallet')">
+                                   Wallet
+                             </ResponsiveNavLink>
+                                 <ResponsiveNavLink :href="route('contact')" :active="route(contact).current('contact')">
+                                   Contact
+                             </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
