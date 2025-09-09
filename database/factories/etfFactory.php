@@ -15,7 +15,6 @@ class EtfFactory extends Factory
             'naam' => $this->faker->company,
             'prijs' => $this->faker->randomFloat(5, 10, 12),
             'omschrijving' => $this->faker->sentence(5),
-            'foto_url' => $this->faker->imageUrl(640, 480, 'business', true, 'stock'),
         ];
     }
     }

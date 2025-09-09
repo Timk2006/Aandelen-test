@@ -15,7 +15,6 @@ class AandeelFactory extends Factory
             'naam' => $this->faker->company,
             'prijs' => $this->faker->randomFloat(2, 10, 500),
             'omschrijving' => $this->faker->sentence(10),
-            'foto_url' => $this->faker->imageUrl(640, 480, 'business', true, 'stock'),
         ];
     }
 }

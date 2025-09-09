@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('transacties', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('aandeel_id')->constrained('aandelen')->onDelete('cascade');
             $table->integer('aantal');
             $table->decimal('prijs_per_stuk', 10, 2);

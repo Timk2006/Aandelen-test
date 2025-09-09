@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AandeelTransactieController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::get('/Aandelen', [AandelenController::class, 'index'])->name('aandelen');
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
 Route::get('/Kopen', [AandelenKoopController::class, 'index'])->name('Kopen');
+
+Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
+
 
 Route::middleware([
     'auth:sanctum',

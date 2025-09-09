@@ -1,30 +1,42 @@
 <?php
 
 namespace App\Http\Controllers;
-use Inertia\Inertia;
+
 use Illuminate\Http\Request;
+use App\Models\TransactieModel;
+
+
 
 class AandeelTransactieController extends Controller
 {
-    public function buy(Request $request) {
-      $user = auth()->user();
-     
-      if (!$user->wallet || $user->wallet->balance < ($request->aantal * $request->prijs_per_stuk)) {
-          return redirect()->back()->with('error', 'Onvoldoende saldo in je wallet.');
-      }
-      
-$user->wallet->balance -= $totaalprijs;
-$totaalprijs = $request->aantal * $request->prijs_per_stuk;
+    public function buy(Request $request)
+    {
+        $user = auth()->user();
 
-      $user->wallet->save();
-      Transaction::create([
-          'user_id' => $user->id,
-          'aandeel_id' => $request->aandeel_id,
-          'aantal' => $request->aantal,
-          'prijs_per_stuk' => $request->prijs_per_stuk,
-          'type' => 'buy',
-      ]);
+        $request->validate([
+            'aandeel_id' => 'required|exists:aandelen,id',
+            'aantal' => 'required|integer|min:1',
+            'prijs_per_stuk' => 'required|numeric|min:0',
+        ]);
 
-      return redirect()->back()->with('success', 'Aandelen gekocht!');
+        $totaalprijs = $request->aantal * $request->prijs_per_stuk;
+
+        
+        if (!$user->wallet || $user->wallet->balance < $totaalprijs) {
+            return redirect()->back()->with('error', 'Onvoldoende saldo in je wallet.');
+        }
+
+        $user->wallet->balance -= $totaalprijs;
+        $user->wallet->save();
+
+        TransactieModel::create([
+            'user_id' => $user->id,
+            'aandeel_id' => $request->aandeel_id,
+            'aantal' => $request->aantal,
+            'prijs_per_stuk' => $request->prijs_per_stuk,
+            'type' => 'buy',
+        ]);
+
+        return redirect()->back()->with('success', 'Aandelen succesvol gekocht!');
     }
 }
