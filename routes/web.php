@@ -1,17 +1,12 @@
 <?php
 
-use App\Http\Controllers\AandeelTransactieController;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController};
 
-use App\Http\Controllers\AandelenController;
-use App\Http\Controllers\AandelenKoopController;
-use App\Http\Controllers\EtfKoopController;
-use App\Http\Controllers\EtfController;
-use App\Http\Controllers\WalletController;
 use Inertia\Inertia;
-use App\Models\User;
-use App\Models\Wallet;
+use App\Models\{user, Wallet, Etf, Aandeel, TransactieModel};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
