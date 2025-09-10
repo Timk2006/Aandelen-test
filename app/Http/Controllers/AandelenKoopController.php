@@ -9,36 +9,30 @@ use Inertia\Inertia;
 
 class AandelenKoopController extends Controller
 {
-    // Formulier tonen
-    public function index()
-    {
-        $aandelen = Aandeel::all(); // alle aandelen ophalen
-        return Inertia::render('Kopen', [
-            'aandelen' => $aandelen
-        ]);
+public function koop(Request $request) 
+{
+    $request->validate([
+        'aandeel_id' => 'required|exists:aandelen,id',
+        'aantal'     => 'required|integer|min:1',
+    ]);
+
+    $user   = Auth::user();
+    $wallet = $user->wallet;
+    $aandeel = Aandeel::findOrFail($request->aandeel_id);
+    $totaal = $aandeel->prijs * $request->aantal;
+
+    if ($wallet->balance < $totaal) {
+        return back()->withErrors(['saldo' => 'Onvoldoende saldo om deze aankoop te doen.']);
     }
 
-    // Aankoop verwerken
-    public function koop(Request $request) 
-    {
-        $request->validate([
-            'stock_id' => 'required|exists:aandelen,id',
-            'aantal'   => 'required|integer|min:1',
-        ]);
+    // saldo verminderen
+    $wallet->balance -= $totaal;
+    $wallet->save();
 
-        $user  = auth()->user();
-        $stock = Aandeel::find($request->stock_id);
-        $totaalPrijs = $stock->prijs * $request->aantal;
+    // toevoegen aan portefeuille
+    $user->aandelen()->attach($aandeel->id, ['aantal' => $request->aantal]);
 
-        if ($user->saldo < $totaalPrijs) {
-            return back()->withErrors(['saldo' => 'Onvoldoende saldo om deze aankoop te doen.']);
-        }
-
-        $user->saldo -= $totaalPrijs;
-        $user->save();
-
-        $user->aandelen()->attach($stock->id, ['aantal' => $request->aantal]);
-
-        return back()->with('success', 'Aandelen succesvol gekocht!');
-    }
+    return back()->with('success', 'Aandeel gekocht!');
 }
+}
+?>

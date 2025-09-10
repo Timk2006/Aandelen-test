@@ -8,7 +8,7 @@ import Welcome from '@/Components/Welcome.vue';
     <AppLayout title="Dashboard test">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-900 leading-tight">
-                Aandelen test website
+                Aandelen website
             </h2>
         </template>
 
@@ -18,9 +18,11 @@ import Welcome from '@/Components/Welcome.vue';
                     <Test />
                 </div>
             </div>
-
+<p class="text-gray-600">
+    Welkom bij de aandelen website hier krijg je uitleg over aandelen zoals etfs en aandelen
+</p>
             <div class="container mt-4">
-           <button class="transition ease-in-out duration-700 ...">Hover me</button>
+    
         </div>
         </div>
     </AppLayout>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AandelenController;
 use App\Http\Controllers\AandelenKoopController;
+use App\Http\Controllers\EtfKoopController;
 use App\Http\Controllers\EtfController;
 use App\Http\Controllers\WalletController;
 use Inertia\Inertia;
