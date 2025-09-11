@@ -1,5 +1,4 @@
 <script setup>
-// import NavBar from '@/Components/NavBar.vue';
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
@@ -8,7 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import Aandelen from '@/Pages/Aandelen.vue';
+import NavBar from '@/Components/NavBar.vue';
 
 defineProps({
     title: String,
@@ -31,15 +30,16 @@ const logout = () => {
 
 <template>
     <div>
-        <Head :title="title" />
+        <Head :title="title"/>
 
-    <Banner />
-    <NavBar />
+        <Banner />
+        <NavBar />
+
 
         <div class="min-h-screen bg-gray-100">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"></div>
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -63,8 +63,8 @@ const logout = () => {
                                 <NavLink :href="route('wallet')" :active="route(wallet).current('wallet')">
                                     Wallet
                                 </NavLink>
-                                  <NavLink :href="route('contact')" :active="route(contact).current('contact')">
-                                    Contact
+                                  <NavLink :href="route('Etfkopen')" :active="route(Etfkopen).current('Etfkopen')">
+                                    Kopen Etf
                                 </NavLink>
                                  <NavLink :href="route('kopen')" :active="route(kopen).current('kopen')">
                                     Kopen
@@ -72,8 +72,8 @@ const logout = () => {
                                 <NavLink :href="route('portfolio')" :active="route(portfolio).current('portfolio')">
                                     Portfolio
                                 </NavLink>
-                            </div>
-                        </div>
+                    </div>
+                      
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <div class="ms-3 relative">
@@ -229,9 +229,6 @@ const logout = () => {
                              </ResponsiveNavLink>
                                  <ResponsiveNavLink :href="route('portfolio')" :active="route(portfolio).current('portfolio')">
                                    Portfolio
-                             </ResponsiveNavLink>
-                               <ResponsiveNavLink :href="route('kopen.etf')" :active="route(kopen.etf).current('kopen.etf')">
-                                   Etf kopen
                              </ResponsiveNavLink>
                     </div>
 
