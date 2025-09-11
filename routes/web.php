@@ -3,7 +3,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController};
+use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController};
 
 use Inertia\Inertia;
 use App\Models\{user, Wallet, Etf, Aandeel, TransactieModel};
@@ -30,9 +30,15 @@ Route::get('/aandelen', [AandelenController::class, 'index'])->name('aandelen');
 
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
-Route::get('/kopen', [AandelenKoopController::class, 'index'])->name('kopen');
+Route::match(['get', 'post'], '/kopen', [AandelenKoopController::class, 'handle'])->name('kopen');
+
 
 Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
+
+
+
+
+    Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 
 
 Route::middleware([

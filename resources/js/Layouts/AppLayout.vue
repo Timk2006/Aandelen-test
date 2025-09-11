@@ -66,6 +66,12 @@ const logout = () => {
                                   <NavLink :href="route('contact')" :active="route(contact).current('contact')">
                                     Contact
                                 </NavLink>
+                                 <NavLink :href="route('kopen')" :active="route(kopen).current('kopen')">
+                                    Kopen
+                                </NavLink>
+                                <NavLink :href="route('portfolio')" :active="route(portfolio).current('portfolio')">
+                                    Portfolio
+                                </NavLink>
                             </div>
                         </div>
 
@@ -220,6 +226,12 @@ const logout = () => {
                              </ResponsiveNavLink>
                                  <ResponsiveNavLink :href="route('contact')" :active="route(contact).current('contact')">
                                    Contact
+                             </ResponsiveNavLink>
+                                 <ResponsiveNavLink :href="route('portfolio')" :active="route(portfolio).current('portfolio')">
+                                   Portfolio
+                             </ResponsiveNavLink>
+                               <ResponsiveNavLink :href="route('kopen.etf')" :active="route(kopen.etf).current('kopen.etf')">
+                                   Etf kopen
                              </ResponsiveNavLink>
                     </div>
 

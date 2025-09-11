@@ -53,5 +53,8 @@ const props = defineProps({
         </div>
   </div>
 
+  <footer>
+    Gemaakt door Tim Koops
+  </footer>
 </AppLayout>
 </template>
