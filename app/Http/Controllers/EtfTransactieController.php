@@ -28,7 +28,7 @@ class EtfTransactieController extends Controller
 
         TransactieModel::create([
             'user_id' => $user->id,
-            'etf_id' => $request->etf_id,   // let op: kolom `etf_id` moet in je TransactieModel bestaan!
+            'etf_id' => $request->etf_id,  
             'aantal' => $request->aantal,
             'prijs_per_stuk' => $request->prijs_per_stuk,
             'type' => 'buy',

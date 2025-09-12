@@ -31,7 +31,7 @@ Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->n
 
 
 Route::match(['get', 'post'], '/kopen', [AandelenKoopController::class, 'handle'])->name('kopen');
-Route::match(['get', 'post'], '/etfkopen', [EtfKoopController::class, 'handle'])->name('Etfkopen');
+Route::match(['get', 'post'], '/etf.buy', [EtfKoopController::class, 'handle'])->name('Etfkopen');
 
 Route::post('/etf/buy', [EtfTransactieController::class, 'buy'])->name('etf.buy');
 

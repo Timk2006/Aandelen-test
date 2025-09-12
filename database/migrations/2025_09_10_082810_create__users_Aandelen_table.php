@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_aandeel', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('aandeel_id')->constrained('aandelen')->onDelete('cascade');
-            $table->integer('aantal');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('user_aandeel')) {
+            Schema::create('user_aandeel', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
+                $table->foreignId('aandeel_id')->constrained()->onDelete('cascade');
+                $table->integer('aantal');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
@@ -27,4 +30,3 @@ return new class extends Migration
         Schema::dropIfExists('user_aandeel');
     }
 };
-?>
