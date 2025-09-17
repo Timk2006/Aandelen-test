@@ -1,13 +1,22 @@
+
 <?php
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController};
+use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController, BotController};
 
 use Inertia\Inertia;
 use App\Models\{user, Wallet, Etf, Aandeel, TransactieModel};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+Route::get('/bot', function () {
+    return Inertia::render('Bot');
+});
+
+Route::get('/bot/vraag', function () {
+    return session('bot_debug') ?? ['info' => 'Nog geen vraag ontvangen.'];
+});
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,12 +44,12 @@ Route::match(['get', 'post'], '/etf.buy', [EtfKoopController::class, 'handle'])-
 
 Route::post('/etf/buy', [EtfTransactieController::class, 'buy'])->name('etf.buy');
 
+Route::post('/bot/vraag', [BotController::class, 'vraag']);
+
 
 Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
 
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-
-    
 
 Route::middleware([
     'auth:sanctum',
