@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 Route::get('/bot', function () {
     return Inertia::render('Bot');
-});
+})->name('bot');
 
 Route::get('/bot/vraag', function () {
     return session('bot_debug') ?? ['info' => 'Nog geen vraag ontvangen.'];
