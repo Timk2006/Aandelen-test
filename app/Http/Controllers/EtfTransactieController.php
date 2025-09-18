@@ -32,6 +32,7 @@ class EtfTransactieController extends Controller
             'aantal' => $request->aantal,
             'prijs_per_stuk' => $request->prijs_per_stuk,
             'type' => 'buy',
+            'aandeel_id' => null,
         ]);
 
         return redirect()->back()->with('success', 'ETF succesvol gekocht!');
