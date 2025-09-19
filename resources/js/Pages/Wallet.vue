@@ -36,5 +36,19 @@ const props = defineProps({
 
     <a href="/etf" class="btn btn-outline-primary mt-4">Koop ETF's met je saldo</a>
   </div>
+     <footer class="bg-gray-900 text-gray-300 py-6 w-full-mt-12">
+  <div class="mx-auto px-4 flex flex-col md:flex-row justify-between items-center max-w-screen-xl">
+    <p class="text-sm">&copy; 2025 Aandelen website, Alle rechten voorbehouden prive.</p>
+    <div class="flex space-x-6 mt-4 md:mt-0">
+      <a href="bot" class="hover:text-white transition">Ai bot</a>
+      <a href="aandelen" class="hover:text-white transition">Aandelen</a>
+      <a href="etf" class="hover:text-white transition">Etf</a><br>
+      <br>
+    </div>
+  </div>
+</footer>
+ <footer class="mt-6 text-center text-sm text-gray-500"><br>
+      Gemaakt door Tim Koops
+    </footer>
     </AppLayout>
 </template>

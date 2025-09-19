@@ -3,7 +3,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController, BotController};
+use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController, BotController, PrijsUpdateController};
 
 use Inertia\Inertia;
 use App\Models\{user, Wallet, Etf, Aandeel, TransactieModel};
@@ -31,6 +31,7 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
+Route::match(['get', 'post'], '/prijzen/update', [PrijsUpdateController::class, 'update'])->name('update');
 
 Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
