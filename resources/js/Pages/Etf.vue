@@ -20,13 +20,13 @@ const { etfs, sort, direction } = defineProps({
 
 
   <div class="container mt-4 p-4">
-    <h1 class="mb-4">Beschikbare ETFs</h1>
+    <h1 class="mb-4"> Etfs die er beschikbaar zijn</h1>
     <table class="table table-striped p-4">
       <thead>
         <tr>
           <th>
             <a :href="`/etf?sort=naam&direction=${sort === 'naam' && direction === 'asc' ? 'desc' : 'asc'}`">
-              Naam
+              Etf
               <span v-if="sort === 'naam'">{{ direction === 'asc' ? '▲' : '▼' }}</span>
             </a>
           </th>

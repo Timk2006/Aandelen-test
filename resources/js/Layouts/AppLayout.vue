@@ -67,13 +67,13 @@ const logout = () => {
                                     Kopen Etf
                                 </NavLink>
                                  <NavLink :href="route('kopen')" :active="route(kopen).current('kopen')">
-                                    Kopen
+                                    Kopen Aandelen
                                 </NavLink>
                                 <NavLink :href="route('portfolio')" :active="route(portfolio).current('portfolio')">
                                     Portfolio
                                 </NavLink>
                                 <NavLink :href="route('bot')" :active="route(bot).current('bot')">
-                                    Vragen chatbot
+                                    Vragen Chatbot
                                 </NavLink>
                     </div>
                       
