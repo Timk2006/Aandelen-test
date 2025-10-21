@@ -35,6 +35,15 @@ class EtfTransactieController extends Controller
             'aandeel_id' => null,
         ]);
 
+        // Voeg ETF toe aan user_etf (pivot)
+        $bestaand = $user->etfs()->where('etf_id', $request->etf_id)->first();
+        if ($bestaand) {
+            $nieuwAantal = $bestaand->pivot->aantal + $request->aantal;
+            $user->etfs()->updateExistingPivot($request->etf_id, ['aantal' => $nieuwAantal]);
+        } else {
+            $user->etfs()->attach($request->etf_id, ['aantal' => $request->aantal]);
+        }
+
         return redirect()->back()->with('success', 'ETF succesvol gekocht!');
     }
 }

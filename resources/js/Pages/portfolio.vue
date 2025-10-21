@@ -70,6 +70,5 @@ const props = defineProps({
  <footer class="mt-6 text-center text-sm text-gray-500">
       Gemaakt door Tim Koops
     </footer>
-    
   </AppLayout>
 </template>

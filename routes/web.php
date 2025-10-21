@@ -3,7 +3,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController, BotController, PrijsUpdateController};
+use App\Http\Controllers\{AandelenController,AandelenKoopController, EtfKoopController, EtfController, WalletController, AandeelTransactieController,PortfolioController, EtfTransactieController, BotController, PrijsUpdateController, VerkoopController};
 
 use Inertia\Inertia;
 use App\Models\{user, Wallet, Etf, Aandeel, TransactieModel};
@@ -40,6 +40,18 @@ Route::get('/aandelen', [AandelenController::class, 'index'])->name('aandelen');
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
 
+// Toon de verkoop-pagina
+Route::get('/verkoop', function () {
+    $user = Auth::user();
+    $aandelen = $user->Aandelen()->withPivot('aantal')->get();
+    return Inertia::render('AandelenVerkoop', [
+        'aandelen' => $aandelen,
+    ]);
+})->middleware(['auth', 'verified'])->name('verkoop');
+
+// Verwerk de verkoop
+Route::post('/verkoop', [VerkoopController::class, 'verkoop']);
+
 Route::match(['get', 'post'], '/kopen', [AandelenKoopController::class, 'handle'])->name('kopen');
 Route::match(['get', 'post'], '/etf.buy', [EtfKoopController::class, 'handle'])->name('Etfkopen');
 
@@ -47,7 +59,7 @@ Route::post('/etf/buy', [EtfTransactieController::class, 'buy'])->name('etf.buy'
 
 Route::post('/bot/vraag', [BotController::class, 'vraag']);
 
-
+// Verkoop route: POST /verkoop, stuurt naar VerkoopController@verkoop
 Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
 
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
