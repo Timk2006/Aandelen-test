@@ -14,7 +14,7 @@ class BotController extends Controller
         $vraag = $request->input('vraag');
         $onderwerp = $request->input('onderwerp');
 
-        $response = Http::post('https://purplecore.app.n8n.cloud/webhook-test/826b51b6-7a40-4002-89c9-1582d89748c2', [
+        $response = Http::post('https://purplecore.app.n8n.cloud/webhook/826b51b6-7a40-4002-89c9-1582d89748c2', [
             'vraag' => $vraag,
             'onderwerp' => $onderwerp,
             'session_id' => session()->getId(),

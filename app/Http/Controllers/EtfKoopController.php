@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-
-
-
 class EtfKoopController extends Controller
 {
 public function handle(Request $request)

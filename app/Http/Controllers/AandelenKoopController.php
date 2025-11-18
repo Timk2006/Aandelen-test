@@ -37,7 +37,19 @@ class AandelenKoopController extends Controller
             return back()->with('success', 'Aandeel gekocht!');
         } else {
             // GET → toon kooppagina
-            $aandelen = Aandeel::all();
+            $aandelen = Aandeel::all()->map(function ($aandeel) {
+                // ✅ Voeg nep-koersdata toe voor de grafiek
+                $fakePrices = [];
+                for ($i = 0; $i < 7; $i++) {
+                    $fakePrices[] = [
+                        'datum' => now()->subDays(6 - $i)->format('Y-m-d'),
+                        'prijs' => $aandeel->prijs + rand(-20, 20) / 10, // kleine fluctuatie
+                    ];
+                }
+                $aandeel->fake_prices = $fakePrices;
+                return $aandeel;
+            });
+
             return Inertia::render('Kopen', [
                 'aandelen' => $aandelen
             ]);

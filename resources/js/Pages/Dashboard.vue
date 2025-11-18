@@ -8,7 +8,7 @@ import NavBar from '@/Components/NavBar.vue';
     <AppLayout title="Dashboard test">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-900 leading-tight">
-                Aandelen website
+                Aandelen website 
             </h2>
         </template>
 

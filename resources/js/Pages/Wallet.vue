@@ -19,9 +19,6 @@ const props = defineProps({
             </h2>
         </template>
 
-        
-
-
   <div class="container mt-4">
     <h2>Je saldo: €{{ props.balance.toFixed(2) }}</h2>
 
@@ -40,15 +37,12 @@ const props = defineProps({
   <div class="mx-auto px-4 flex flex-col md:flex-row justify-between items-center max-w-screen-xl">
     <p class="text-sm">&copy; 2025 Aandelen website, Alle rechten voorbehouden prive.</p>
     <div class="flex space-x-6 mt-4 md:mt-0">
-      <a href="bot" class="hover:text-white transition">Ai bot</a>
+      <a href="bot" class="hover:text-white">Ai bot</a>
       <a href="aandelen" class="hover:text-white transition">Aandelen</a>
       <a href="etf" class="hover:text-white transition">Etf</a><br>
       <br>
     </div>
   </div>
 </footer>
- <footer class="mt-6 text-center text-sm text-gray-500"><br>
-      Gemaakt door Tim Koops
-    </footer>
     </AppLayout>
 </template>

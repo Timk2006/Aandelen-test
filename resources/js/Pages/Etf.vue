@@ -49,6 +49,10 @@ const { etfs, sort, direction } = defineProps({
 </tr>
       </tbody>
     </table>
+ <div class="container mt-4">
+            <a href="/wallet" class="btn btn-primary mb-3">Ga naar je account om etfs te kopen</a>
+        </div>
+    
   </div>
 </applayout>
   </template>

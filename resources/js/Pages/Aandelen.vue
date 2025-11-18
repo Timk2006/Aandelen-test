@@ -52,9 +52,5 @@ const props = defineProps({
             <a href="/wallet" class="btn btn-primary mb-3">Ga naar je account om aandelen te kopen</a>
         </div>
   </div>
-
-  <footer>
-    Gemaakt door Tim Koops
-  </footer>
 </AppLayout>
 </template>
