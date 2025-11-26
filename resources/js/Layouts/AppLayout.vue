@@ -15,6 +15,19 @@ defineProps({
 
 const showingNavigationDropdown = ref(false);
 
+// Search state (moved from embedded <script> block)
+const query = ref('');
+const results = ref(null);
+
+const search = async () => {
+    if (query.value.length < 2) {
+        results.value = null;
+        return;
+    }
+    const r = await fetch(`/api/search?q=${encodeURIComponent(query.value)}`);
+    results.value = await r.json();
+};
+
 const switchToTeam = (team) => {
     router.put(route('current-team.update'), {
         team_id: team.id,
@@ -191,8 +204,39 @@ const logout = () => {
                                 </Dropdown>
                             </div>
                         </div>
+  <div>
+    <input 
+      v-model="query"
+      @input="search"
+      placeholder="Zoek..."
+      class="border px-2 py-1 rounded"
+    />
 
-                        <!-- Hamburger (mobile) -->
+    <div v-if="results && query" class="bg-white border rounded mt-2 p-2 absolute z-50">
+      
+      <div v-if="results.pages.length">
+        <strong>Pagina's</strong>
+        <div v-for="p in results.pages" :key="p.url">
+          <a :href="p.url">{{ p.name }}</a>
+        </div>
+      </div>
+
+      <div v-if="results.aandelen.length" class="mt-2">
+        <strong>Aandelen</strong>
+        <div v-for="a in results.aandelen" :key="a.id">
+          {{ a.naam }}
+        </div>
+      </div>
+
+      <div v-if="results.etfs.length" class="mt-2">
+        <strong>ETF's</strong>
+        <div v-for="e in results.etfs" :key="e.id">
+          {{ e.naam }}
+        </div>
+      </div>
+
+        </div>
+    </div>
                         <div class="-me-2 flex items-center sm:hidden">
                             <button
                                 class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
