@@ -22,8 +22,12 @@ Route::post('api/bot/vraag', [BotController::class, 'vraag']);
             ['name' => 'Home', 'url' => '/'],
             ['name' => 'Aandelen', 'url' => '/aandelen'],
             ['name' => 'ETF', 'url' => '/etf'],
-            ['name' => 'Contact', 'url' => '/contact'],
+            ['name' => 'Wallet', 'url' => '/wallet'],
             ['name' => 'Portfolio', 'url' => '/portfolio'],
+             ['name' => 'Verkopen', 'url' => '/verkoop'],
+              ['name' => 'Vragen chatbot', 'url' => '/bot'],
+               ['name' => 'Kopen Aandelen', 'url' => '/kopen'],
+                ['name' => 'Kopen Etf', 'url' => '/etf.buy'],
         ])->filter(fn($p) => str_contains(strtolower($p['name']), strtolower($q)))->values(),
     ];
 });
