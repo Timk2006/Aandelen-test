@@ -11,6 +11,7 @@ class BotController extends Controller
     public function vraag(Request $request)
     {
         Log::info('Bot request', $request->all());
+
         $vraag = $request->input('vraag');
         $onderwerp = $request->input('onderwerp');
 
@@ -21,12 +22,13 @@ class BotController extends Controller
         ]);
 
         $antwoord = $response->json()['output'] ?? 'Geen antwoord ontvangen';
-        // Sla op in sessie voor debuggen
+
         session(['bot_debug' => [
             'vraag' => $vraag,
             'onderwerp' => $onderwerp,
             'antwoord' => $antwoord,
         ]]);
+
         return response()->json([
             'vraag' => $vraag,
             'onderwerp' => $onderwerp,

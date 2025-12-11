@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-\App\Models\Aandeel::factory()->count(10)->create();
-\App\Models\Etf::factory()->count(10)->create();
+use Illuminate\Support\Facades\Hash;
+use App\Models\Aandeel;
+use App\Models\Etf;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,11 +16,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Create an admin user (email: admin@example.com / password: password)
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'is_admin' => true,
         ]);
+
+        // Optional: create some sample aandelen and etfs manually if desired
     }
 }

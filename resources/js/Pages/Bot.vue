@@ -2,29 +2,35 @@
 import { ref } from "vue";
 import axios from "axios";
 import AppLayout from "@/Layouts/AppLayout.vue";
-import NavBar from "@/Components/NavBar.vue"; // importeer je navigatie
+
+
 
 const onderwerp = ref("");
 const vraag = ref("");
 const antwoord = ref("");
+const isTyping = ref(false);
 
 const stelVraag = async () => {
+  if (!vraag.value.trim()) return;
+
   try {
+    isTyping.value = true;
+
     const response = await axios.post("/bot/vraag", {
-      onderwerp: onderwerp.value,
+      onderwerp: onderwerp.value || "chat",
       vraag: vraag.value,
     });
-    antwoord.value = response.data.antwoord;
-    vraag.value = "";
-    onderwerp.value = "";
+
+    antwoord.value = response.data.antwoord ?? "Geen antwoord ontvangen";
   } catch (error) {
     antwoord.value = "Er ging iets mis...";
+  } finally {
+    isTyping.value = false;
   }
 };
 </script>
 
 <template>
-  <NavBar />
   <AppLayout title="Vraag de Aandelen Bot">
     <template #header>
       <h2 class="font-semibold text-xl text-gray-900 leading-tight">
@@ -46,7 +52,7 @@ const stelVraag = async () => {
         <label class="block mb-2 font-semibold">Je vraag</label>
         <textarea
           v-model="vraag"
-          placeholder="Bijv. Hoe koop ik aandelen?"
+          placeholder="Bijvoorbeeld hoe koop ik aandelen"
           class="border p-2 w-full rounded mb-4"
           rows="4"
           required
@@ -57,25 +63,14 @@ const stelVraag = async () => {
         </button>
       </form>
 
+      <div v-if="isTyping" class="mt-4 text-gray-500 text-sm">
+        De bot is aan het typen
+      </div>
+
       <div v-if="antwoord" class="mt-6">
         <h2 class="font-semibold">Antwoord van de bot:</h2>
         <p class="mt-2">{{ antwoord }}</p>
       </div>
     </div>
-
-    <footer class="bg-gray-900 text-gray-300 py-6 w-full-mt-12">
-  <div class="mx-auto px-4 flex flex-col md:flex-row justify-between items-center max-w-screen-xl">
-    <p class="text-sm">&copy; 2025 Aandelen website, Alle rechten voorbehouden prive.</p>
-    <div class="flex space-x-6 mt-4 md:mt-0">
-      <a href="bot" class="hover:text-white transition">Ai bot</a>
-      <a href="aandelen" class="hover:text-white transition">Aandelen</a>
-      <a href="etf" class="hover:text-white transition">Etf</a>
-    </div>
-  </div>
-</footer>
-
-    <footer class="mt-6 text-center text-sm text-gray-500">
-      Gemaakt door Tim Koops
-    </footer>
   </AppLayout>
 </template>

@@ -37,6 +37,18 @@ Route::get('/etf', [EtfController::class, 'index'])->name('etf');
 
 Route::get('/aandelen', [AandelenController::class, 'index'])->name('aandelen');
 
+// Admin: beheer aandelen (zichtbaar voor ingelogde gebruikers; server valideert admin)
+Route::get('/admin/aandelen', function () {
+    $user = Auth::user();
+    if (! $user || ! ($user->is_admin ?? false)) {
+        abort(403);
+    }
+    $aandelen = Aandeel::orderBy('naam')->get();
+    return Inertia::render('Admin/Aandelen/Index', [
+        'aandelen' => $aandelen,
+    ]);
+})->middleware('auth')->name('admin.aandelen');
+
 Route::match(['get', 'post'], '/wallet', [WalletController::class, 'handle'])->name('wallet');
 
 
@@ -63,6 +75,17 @@ Route::post('/bot/vraag', [BotController::class, 'vraag']);
 Route::get('/transacties', [AandeelTransactieController::class, 'index'])->name('transacties.index');
 
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+
+    Route::middleware('auth')->group(function () {
+    Route::post('/aandelen/add', fn(Request $r)=>Aandeel::create($r->only('naam','prijs')));
+    Route::delete('/aandelen/{aandeel}', [AandelenController::class, 'destroy'])->name('aandelen.destroy');
+});
+
+Route::get('/aandelen-beheer', function () {
+    $aandeel = \App\Models\Aandeel::all();
+    return view('aandelen', compact('aandeel'));
+})->middleware('auth');
+
 
 Route::middleware([
     'auth:sanctum',

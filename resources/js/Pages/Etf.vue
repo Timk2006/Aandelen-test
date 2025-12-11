@@ -18,6 +18,9 @@ const { etfs, sort, direction } = defineProps({
             </h2>
         </template>
 
+        <template>
+</template>
+
 
   <div class="container mt-4 p-4">
     <h1 class="mb-4"> Etfs die er beschikbaar zijn</h1>
